@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import backgroundImage from './bg.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const First = ({ setUserData }) => {
- // State variables to store form data
- const [name, setName] = useState('');
- const [email, setEmail] = useState('');
- const [gender, setGender] = useState('');
- const [birthdate, setBirthdate] = useState('');
- const [phoneNumber, setPhoneNumber] = useState('');
- const [course, setCourse] = useState('');
- const [year, setYear] = useState('');
- const [institution, setInstitution] = useState('');
- const [hname, setHname] = useState('');
+  // State variables to store form data
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [gender, setGender] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [course, setCourse] = useState('');
+  const [year, setYear] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [hname, setHname] = useState('');
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
@@ -22,8 +24,12 @@ const First = ({ setUserData }) => {
   const [comments, setComments] = useState('');
   const [imgFile, setImgFile] = useState(null);
 
+
+
+
+
 // Function to handle file upload and request sending
-const fileUpload = async () => {
+  const fileUpload = async () => {
 
     try {
       // Create a FormData object to append form data
@@ -47,6 +53,10 @@ const fileUpload = async () => {
       formData.append('comments', comments);
       formData.append('imgFile', imgFile);
 
+
+
+
+
       // Send form data to the server using axios post request
       const response = await axios.post('http://localhost/server_test.php', formData, {
         headers: { 'Content-Type': "multipart/form-data" },
@@ -64,17 +74,26 @@ const fileUpload = async () => {
     } catch (error) {
       console.error('Error:', error);
     }
-  }; 
+  };
 
-   // Function to handle form submission
-   const handleSubmit = async (e) => {
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
 
     e.preventDefault();
     // Call fileUpload function
     await fileUpload();
-    };
 
-    // Function to handle skill change
+  };
+
+  // Function to handle file change
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImgFile(file);
+  };
+
+
+  // Function to handle skill change
   const handleSkillChange = (skill) => {
     if (skills.includes(skill)) {
       setSkills(skills.filter(s => s !== skill));
@@ -82,17 +101,10 @@ const fileUpload = async () => {
       setSkills([...skills, skill]);
     }
   };
+  // JSX return
+  return (
 
-   // Function to handle file change
-   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setImgFile(file);
-  };
-
-  
-
-return(
-<div>
+    <div>
       <div className="container mt-5 d-grid " style={{ backgroundImage: `url(${backgroundImage})` }}>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
 
@@ -243,6 +255,8 @@ return(
 
 
 
+
+
           {/* Academic Details */}
           
           <div className='card bg-light border-info mt-3'>
@@ -305,6 +319,10 @@ return(
               </div>
             </div>
           </div>
+
+
+
+
 
 
           {/* Address Details */}
@@ -407,7 +425,6 @@ return(
               </div>
             </div>
           </div>
-
 
 
           {/* Skills */}
@@ -530,6 +547,7 @@ return(
             </div>
           </div>
 
+
           {/* Upload Photo */}
           
           <div className='card bg-light border-info mt-3'>
@@ -552,8 +570,10 @@ return(
           </div>
 
 
-{/* Submit Button */}
-<div className="mb-3 mt-3 row">
+
+
+          {/* Submit Button */}
+          <div className="mb-3 mt-3 row">
             <div className="text-center">
               <button type="submit" className="btn btn-success">SUBMIT</button>
             </div>
@@ -561,8 +581,7 @@ return(
         </form>
       </div>
     </div>
+  );
+};
 
-);
-}
-
-export default First
+export default First;
