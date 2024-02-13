@@ -2,7 +2,10 @@ import React from 'react';
 // Component for displaying user data in a printable format
 const Second = ({ userData }) => {
     const imgFile = userData.imgFile;
-  
+  // Function to handle printing the page
+  const handlePrint = () => {
+    window.print();
+  };
     
 
 
@@ -76,10 +79,16 @@ const Second = ({ userData }) => {
           </div>
         </div>
       </div>
+
+
+      {/* Button to trigger printing */}
+      <div className="text-center mt-3 mb-3">
+        <button className="btn btn-primary" onClick={handlePrint}>Print</button>
+      </div >
       </div>
 
 
 
     );
 }
-export default Second
+export default Second;
