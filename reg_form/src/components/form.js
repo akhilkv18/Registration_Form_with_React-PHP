@@ -20,6 +20,7 @@ const First = ({ setUserData }) => {
   const [pin, setPin] = useState('');
   const [skills, setSkills] = useState([]);
   const [comments, setComments] = useState('');
+  const [imgFile, setImgFile] = useState(null);
 
 // Function to handle file upload and request sending
 const fileUpload = async () => {
@@ -44,6 +45,7 @@ const fileUpload = async () => {
       formData.append('pin', pin);
       formData.append('skills', skills.join(','));
       formData.append('comments', comments);
+      formData.append('imgFile', imgFile);
 
       // Send form data to the server using axios post request
       const response = await axios.post('http://localhost/server_test.php', formData, {
@@ -70,7 +72,7 @@ const fileUpload = async () => {
     e.preventDefault();
     // Call fileUpload function
     await fileUpload();
-
+    };
 
     // Function to handle skill change
   const handleSkillChange = (skill) => {
@@ -81,7 +83,13 @@ const fileUpload = async () => {
     }
   };
 
-  }
+   // Function to handle file change
+   const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImgFile(file);
+  };
+
+  
 
 return(
 <div>
@@ -518,6 +526,27 @@ return(
                   value={comments}
                   onChange={(e) => setComments(e.target.value)}
                 ></textarea>
+              </div>
+            </div>
+          </div>
+
+          {/* Upload Photo */}
+          
+          <div className='card bg-light border-info mt-3'>
+            <div className='card-body'>
+              <div className="row">
+                <div >
+                  <h6 className="mb-4">UPLOAD PASSPORT SIZE PHOTO<b><span className="text-danger">*</span></b></h6>
+                  <div className="mb-3 mt-2 row">
+                    <input
+                      type="file"
+                      className="form-control"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      required
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
