@@ -18,6 +18,8 @@ const First = ({ setUserData }) => {
   const [state, setState] = useState('');
   const [country, setCountry] = useState('');
   const [pin, setPin] = useState('');
+  const [skills, setSkills] = useState([]);
+  const [comments, setComments] = useState('');
 
 // Function to handle file upload and request sending
 const fileUpload = async () => {
@@ -40,6 +42,8 @@ const fileUpload = async () => {
       formData.append('state', state);
       formData.append('country', country);
       formData.append('pin', pin);
+      formData.append('skills', skills.join(','));
+      formData.append('comments', comments);
 
       // Send form data to the server using axios post request
       const response = await axios.post('http://localhost/server_test.php', formData, {
@@ -66,6 +70,16 @@ const fileUpload = async () => {
     e.preventDefault();
     // Call fileUpload function
     await fileUpload();
+
+
+    // Function to handle skill change
+  const handleSkillChange = (skill) => {
+    if (skills.includes(skill)) {
+      setSkills(skills.filter(s => s !== skill));
+    } else {
+      setSkills([...skills, skill]);
+    }
+  };
 
   }
 
@@ -382,6 +396,128 @@ return(
                     required
                   />
                 </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          {/* Skills */}
+        
+          <div className='card bg-light border-info mt-3'>
+            <div className='card-body'>
+              <div className="row">
+                <label><h6 className='card-title'>SKILLS</h6></label><br />
+              </div>
+
+
+
+
+              <div className="row mt-3">
+                <div className="col-md-4">
+                  <div className="form-check form-check-inline required">
+                    <input
+                      type="checkbox"
+                      id="WebDevelopment"
+                      name="WebDevelopment"
+                      value="WebDevelopment"
+                      className="form-check-input"
+                      checked={skills.includes('WebDevelopment')}
+                      onChange={() => handleSkillChange('WebDevelopment')}
+                    />
+                    <label htmlFor="WebDevelopment" className="form-check-label">Web Development</label>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="form-check form-check-inline">
+                    <input
+                      type="checkbox"
+                      id="ml"
+                      name="ml"
+                      value="ML"
+                      className="form-check-input"
+                      checked={skills.includes('ML')}
+                      onChange={() => handleSkillChange('ML')}
+                    />
+                    <label htmlFor="ml" className="form-check-label">Machine Learning</label>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="form-check form-check-inline">
+                    <input
+                      type="checkbox"
+                      id="AndroidDevelopment"
+                      name="AndroidDevelopment"
+                      value="AndroidDevelopment"
+                      className="form-check-input"
+                      checked={skills.includes('AndroidDevelopment')}
+                      onChange={() => handleSkillChange('AndroidDevelopment')}
+                    />
+                    <label htmlFor="AndroidDevelopment" className="form-check-label">Android Development</label>
+                  </div>
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col-md-4'>
+                  <div className="form-check form-check-inline">
+                    <input
+                      type="checkbox"
+                      id="ai"
+                      name="ai"
+                      value="AI"
+                      className="form-check-input"
+                      checked={skills.includes('AI')}
+                      onChange={() => handleSkillChange('AI')}
+                    />
+                    <label htmlFor="AI" className="form-check-label">Artificial Intelligence</label>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="form-check form-check-inline">
+                    <input
+                      type="checkbox"
+                      id="cloudComputing"
+                      name="cloudComputing"
+                      value="cloudComputing"
+                      className="form-check-input"
+                      checked={skills.includes('cloudComputing')}
+                      onChange={() => handleSkillChange('cloudComputing')}
+                    />
+                    <label htmlFor="cloudComputing" className="form-check-label">Cloud Computing</label>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="form-check form-check-inline">
+                    <input
+                      type="checkbox"
+                      id="dataAnalyst"
+                      name="dataAnalyst"
+                      value="dataAnalyst"
+                      className="form-check-input"
+                      checked={skills.includes('dataAnalyst')}
+                      onChange={() => handleSkillChange('dataAnalyst')}
+                    />
+                    <label htmlFor="dataAnalyst" className="form-check-label">Data Analyst</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {/* Comments */}
+          
+          <div className='card bg-light border-info mt-3'>
+            <div className='card-body'>
+              <div className="form-row mb-2">
+                <label htmlFor="comments"><h6 className='card-title'>COMMENTS</h6></label>
+                <textarea
+                  className="form-control"
+                  id="comments"
+                  name="comments"
+                  value={comments}
+                  onChange={(e) => setComments(e.target.value)}
+                ></textarea>
               </div>
             </div>
           </div>
