@@ -9,7 +9,9 @@ const First = ({ setUserData }) => {
  const [gender, setGender] = useState('');
  const [birthdate, setBirthdate] = useState('');
  const [phoneNumber, setPhoneNumber] = useState('');
-
+ const [course, setCourse] = useState('');
+  const [year, setYear] = useState('');
+  const [institution, setInstitution] = useState('');
 
 // Function to handle file upload and request sending
 const fileUpload = async () => {
@@ -23,6 +25,9 @@ const fileUpload = async () => {
       formData.append('gender', gender);
       formData.append('birthdate', birthdate);
       formData.append('phoneNumber', phoneNumber);
+      formData.append('course', course);
+      formData.append('year', year);
+      formData.append('institution', institution);
 
       // Send form data to the server using axios post request
       const response = await axios.post('http://localhost/server_test.php', formData, {
@@ -192,6 +197,74 @@ return(
                     placeholder='eg: xxxxxxxxxx'
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          {/* Academic Details */}
+          
+          <div className='card bg-light border-info mt-3'>
+            <div className='card-body'>
+              <div className="form-row mt-3"><h6 className='card-title'>ACADEMIC DETAILS</h6></div>
+              <div className="row mt-3">
+                <div className="col-md-6">
+                  <label htmlFor="course">Degree Course<b><span className="text-danger">*</span></b></label>
+
+                  <select
+                    className="form-control"
+                    id="course"
+                    name="course"
+                    value={course}
+                    onChange={(e) => setCourse(e.target.value)}
+                    required
+                  >
+                    <option value="">Select a  course</option>
+                    <option value="BCA">BCA</option>
+                    <option value="MCA">MCA</option>
+                    <option value="DATA SCIENCE">DATA SCIENCE</option>
+                  </select>
+
+                </div>
+
+
+                <div className="col-md-6">
+                  <label htmlFor="year">Year Level<b><span className="text-danger">*</span></b></label>
+                  <select
+                    className="form-control"
+                    id="year"
+                    name="year"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                    required
+                  >
+                    <option value="">Select a year level</option>
+                    <option value="1">Year 1</option>
+                    <option value="2">Year 2</option>
+                    <option value="3">Year 3</option>
+                    <option value="PASSED OUT">PASSED OUT</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="row mt-3">
+                <div className="col-md-6">
+                  <label htmlFor="institution">Institution<b><span className="text-danger">*</span></b></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="institution"
+                    name="institution"
+                    placeholder='Enter name of the institution'
+                    value={institution}
+                    onChange={(e) => setInstitution(e.target.value)}
                     required
                   />
                 </div>
