@@ -10,8 +10,14 @@ const First = ({ setUserData }) => {
  const [birthdate, setBirthdate] = useState('');
  const [phoneNumber, setPhoneNumber] = useState('');
  const [course, setCourse] = useState('');
-  const [year, setYear] = useState('');
-  const [institution, setInstitution] = useState('');
+ const [year, setYear] = useState('');
+ const [institution, setInstitution] = useState('');
+ const [hname, setHname] = useState('');
+  const [street, setStreet] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
+  const [pin, setPin] = useState('');
 
 // Function to handle file upload and request sending
 const fileUpload = async () => {
@@ -28,6 +34,12 @@ const fileUpload = async () => {
       formData.append('course', course);
       formData.append('year', year);
       formData.append('institution', institution);
+      formData.append('hname', hname);
+      formData.append('street', street);
+      formData.append('city', city);
+      formData.append('state', state);
+      formData.append('country', country);
+      formData.append('pin', pin);
 
       // Send form data to the server using axios post request
       const response = await axios.post('http://localhost/server_test.php', formData, {
@@ -265,6 +277,108 @@ return(
                     placeholder='Enter name of the institution'
                     value={institution}
                     onChange={(e) => setInstitution(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {/* Address Details */}
+          
+          <div className='card bg-light border-info mt-3'>
+            <div className='card-body'>
+              <div className="form-row mt-3"><h6>ADDRESS</h6></div>
+              <div className="row mt-3">
+                <div className="col-md-6">
+                  <label htmlFor="hname">House Name<b><span className="text-danger">*</span></b></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="hname"
+                    name="hname"
+                    placeholder='Enter house name'
+                    value={hname}
+                    onChange={(e) => setHname(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label htmlFor="street">Street<b><span className="text-danger">*</span></b></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="street"
+                    name="street"
+                    placeholder='Enter street name'
+                    value={street}
+                    onChange={(e) => setStreet(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+
+
+
+
+              <div className="row mt-3">
+                <div className="col-md-6">
+                  <label htmlFor="city">City<b><span className="text-danger">*</span></b></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="city"
+                    name="city"
+                    placeholder='Enter city name'
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label htmlFor="state">State<b><span className="text-danger">*</span></b></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="state"
+                    name="state"
+                    placeholder='Enter state name'
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+
+
+
+
+
+              <div className="row mt-3">
+                <div className="col-md-6">
+                  <label htmlFor="country">Country<b><span className="text-danger">*</span></b></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="country"
+                    name="country"
+                    placeholder='Enter country name'
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label htmlFor="pin">PIN<b><span className="text-danger">*</span></b></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="pin"
+                    name="pin"
+                    placeholder='eg: xxxxxx'
+                    value={pin}
+                    onChange={(e) => setPin(e.target.value)}
                     required
                   />
                 </div>
