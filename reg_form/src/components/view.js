@@ -1,16 +1,17 @@
 import React from 'react';
+
 // Component for displaying user data in a printable format
 const Second = ({ userData }) => {
-    const imgFile = userData.imgFile;
+  const imgFile = userData.imgFile;
+
   // Function to handle printing the page
   const handlePrint = () => {
     window.print();
   };
-    
 
-
-    return(
-        <div className="container">
+  // JSX return
+  return (
+    <div className="container">
       <div className="card bg-light">
         <div className="card-body">
           <div className="row justify-content-center mt-5">
@@ -85,10 +86,8 @@ const Second = ({ userData }) => {
       <div className="text-center mt-3 mb-3">
         <button className="btn btn-primary" onClick={handlePrint}>Print</button>
       </div >
-      </div>
+    </div>
+  );
+};
 
-
-
-    );
-}
 export default Second;

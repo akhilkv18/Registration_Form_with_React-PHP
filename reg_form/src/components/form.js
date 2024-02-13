@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import backgroundImage from './bg.jpg';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 const First = ({ setUserData }) => {

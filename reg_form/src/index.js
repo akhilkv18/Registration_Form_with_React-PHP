@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import First from './StudentRegForm/form';
-import Second from './StudentRegForm/view';
+import First from './components/form';
+import Second from './components/view';
 
 const App = () => {
   // State to hold the submitted user data
